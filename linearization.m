@@ -1,4 +1,3 @@
-clc; clear all;
 % Definindo a função com variáveis simbólicas
 syms a b c y yd ydd u N m g;
 

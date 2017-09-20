@@ -4,7 +4,7 @@ syms xi wn;
 syms a b c;
 syms kp kd ki;
 syms gammaKp gammaKd gammaKi;
-syms p; 
+syms
 
 % valores de constantes
 gammaKp_exp = 1;
