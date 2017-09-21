@@ -25,9 +25,9 @@ Mp = 0.20;
 
 % xi e omega_n a partir dos requisitos
 
-xi = abs(log(Mp))/sqrt(pi^2+(log(Mp)^2));
+xi = abs(log(Mp))/sqrt(pi^2+(log(Mp)^2))
 
-wn = (pi - acos(xi))/(tr*sqrt(1 - xi^2));
+wn = (pi - acos(xi))/(tr*sqrt(1 - xi^2))
 
 % Função de transferência modelo
 

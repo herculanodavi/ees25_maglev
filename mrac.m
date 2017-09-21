@@ -10,9 +10,9 @@ syms p;
 gammaKp_exp = 1;
 gammaKd_exp = 1;
 gammaKi_exp = 1;
-a_exp = 1;
-b_exp = 1;
-c_exp = 1;  
+a_exp = 2.206e-3;
+b_exp = 1.25;
+c_exp = 4.962;  
 
 % requisitos desejados
 ts = 1;
@@ -22,13 +22,12 @@ wn_exp = 1;
 
 % funcao de transferencia da planta
 %G(s) = 0.004813/(s^2 + 1.25 *s + 6.031);
-G(s) = a/(s^2 + b*s + c);
+G = a/(s^2 + b*s + c);
 
 % funcao de transferencia da planta desejada
 G_m = 1/(s^2 + 2*wn*xi*s + wn^2);
-
 % funcao de transferencia do sistema com controlador
-G_c = (kp + ki/s)/(1/G(p) + kp + ki/s + s*kd);  %1/G
+G_c = (kp + ki/s)/(1/G + kp + ki/s + s*kd);  %1/G
 
 % erro de adaptação
 y_p     = G_c * r;
@@ -44,3 +43,7 @@ de_dkd = diff(epsilon, kd);
 dkp_dt = - gammaKp * epsilon * de_dkp;
 dki_dt = - gammaKi * epsilon * de_dki;  
 dkd_dt = - gammaKd * epsilon * de_dkd;
+
+dkp = subs(dkp_dt/e/epsilon, [a b c], [a_exp b_exp c_exp])
+dki = subs(dki_dt/e/epsilon, [a b c], [a_exp b_exp c_exp])
+desejada = subs(G_m, [xi wn], [0.4559 114.844])
